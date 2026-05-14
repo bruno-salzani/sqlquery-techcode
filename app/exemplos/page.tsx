@@ -6,8 +6,8 @@ import { buildMetadata } from "@/lib/seo";
 import { examples } from "@/lib/site";
 
 export const metadata = buildMetadata({
-  title: "Exemplos de consultas SQL simples",
-  description: "Veja exemplos prontos de queries SQL simples com filtros, ordenação e limite para acelerar seu fluxo.",
+  title: "Exemplos prontos de consultas SQL simples",
+  description: "Veja exemplos prontos de queries SQL simples com filtros, ordenação e limite para estudar, adaptar e acelerar seu fluxo.",
   path: "/exemplos",
 });
 
@@ -17,9 +17,9 @@ export default function ExemplosPage() {
       <Container>
         <div className="max-w-3xl">
           <Badge>Exemplos</Badge>
-          <h1 className="section-title mt-5 text-slate-950">Exemplos prontos para aprender, adaptar e copiar.</h1>
+          <h1 className="section-title mt-5 text-slate-950">Consultas prontas para estudar, adaptar e copiar com rapidez.</h1>
           <p className="section-copy mt-5">
-            Estas estruturas ajudam a entender rapidamente como montar consultas SQL simples para clientes, produtos, pedidos e outros cenários recorrentes.
+            Use estes cenários como ponto de partida para entender a estrutura do SQL, validar combinações comuns de filtros e acelerar tarefas de rotina.
           </p>
         </div>
 
@@ -28,14 +28,16 @@ export default function ExemplosPage() {
             <Card key={example.title}>
               <p className="text-lg font-semibold text-slate-950">{example.title}</p>
               <p className="mt-2 text-sm leading-7 text-slate-600">{example.summary}</p>
-              <pre className="mt-5 overflow-x-auto rounded-3xl bg-slate-950 p-5 text-sm leading-7 text-slate-100">{buildSqlQuery({
-                table: example.table,
-                columns: example.columns.join(", "),
-                filters: example.filters,
-                orderBy: example.orderBy,
-                direction: example.direction,
-                limit: example.limit,
-              })}</pre>
+              <pre className="mt-5 overflow-x-auto rounded-3xl bg-slate-950 p-5 text-sm leading-7 text-slate-100">
+                {buildSqlQuery({
+                  table: example.table,
+                  columns: example.columns.join(", "),
+                  filters: example.filters,
+                  orderBy: example.orderBy,
+                  direction: example.direction,
+                  limit: example.limit,
+                })}
+              </pre>
             </Card>
           ))}
         </div>

@@ -1,6 +1,6 @@
 import { Container } from "@/components/layout/container";
-import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
 import { steps } from "@/lib/site";
 
 export function HowItWorks() {
@@ -9,7 +9,10 @@ export function HowItWorks() {
       <Container>
         <div className="max-w-3xl">
           <Badge>Como funciona</Badge>
-          <h2 className="section-title mt-5 text-slate-950">Três passos para gerar uma consulta SQL simples.</h2>
+          <h2 className="section-title mt-5 text-slate-950">Três passos para sair da ideia e chegar em uma query utilizável.</h2>
+          <p className="section-copy mt-5">
+            O fluxo foi montado para manter contexto, reduzir retrabalho e mostrar o resultado com clareza antes da cópia final.
+          </p>
         </div>
 
         <div className="mt-10 grid gap-4 lg:grid-cols-3">

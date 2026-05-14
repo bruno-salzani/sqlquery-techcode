@@ -8,21 +8,11 @@ export const adSlots = {
   hero: {
     slot: process.env.NEXT_PUBLIC_ADSENSE_SLOT_BANNER?.trim() || "5183612327",
     label: "Banner horizontal",
-    className: "min-h-[140px] sm:min-h-[160px]",
+    className: "min-h-[132px] sm:min-h-[152px]",
   },
   inContent: {
     slot: process.env.NEXT_PUBLIC_ADSENSE_SLOT_SQUARE?.trim() || "9222479973",
-    label: "Bloco quadrado",
+    label: "Bloco de conteúdo",
     className: "min-h-[280px] sm:min-h-[320px]",
-  },
-  sidebar: {
-    slot: process.env.NEXT_PUBLIC_ADSENSE_SLOT_VERTICAL?.trim() || "8543823128",
-    label: "Anúncio vertical",
-    className: "min-h-[600px]",
-  },
-  mobile: {
-    slot: process.env.NEXT_PUBLIC_ADSENSE_SLOT_BANNER?.trim() || "5183612327",
-    label: "Mobile ad",
-    className: "min-h-[120px]",
   },
 } as const;

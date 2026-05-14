@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { buildMetadata } from "@/lib/seo";
-import { buildBreadcrumbSchema, buildFaqSchema, buildSoftwareSchema, organizationSchema, websiteSchema } from "@/lib/schema";
 import { adsClient, adSlots, adsEnabled } from "@/lib/ads";
+import { buildBreadcrumbSchema, buildFaqSchema, buildSoftwareSchema, organizationSchema, websiteSchema } from "@/lib/schema";
+import { buildMetadata } from "@/lib/seo";
 
 describe("SEO and config helpers", () => {
   it("builds canonical metadata for a route", () => {
@@ -11,12 +11,12 @@ describe("SEO and config helpers", () => {
       path: "/sql-generator",
     });
 
-    expect(metadata.alternates?.canonical).toBe("https://sqlquery.techcode.com.br/sql-generator");
-    expect(metadata.openGraph?.url).toBe("https://sqlquery.techcode.com.br/sql-generator");
+    expect(metadata.alternates?.canonical).toBe("https://sqlquery.techcodecompany.com/sql-generator");
+    expect(metadata.openGraph?.url).toBe("https://sqlquery.techcodecompany.com/sql-generator");
   });
 
   it("creates software application schema", () => {
-    const schema = buildSoftwareSchema("SQL Query", "Gerador SQL", "https://sqlquery.techcode.com.br");
+    const schema = buildSoftwareSchema("SQL Query", "Gerador SQL", "https://sqlquery.techcodecompany.com");
     expect(schema["@type"]).toBe("SoftwareApplication");
     expect(schema.offers.price).toBe("0");
   });
@@ -29,8 +29,8 @@ describe("SEO and config helpers", () => {
 
   it("creates breadcrumb schema entries", () => {
     const schema = buildBreadcrumbSchema([
-      { name: "Home", url: "https://sqlquery.techcode.com.br" },
-      { name: "FAQ", url: "https://sqlquery.techcode.com.br/faq" },
+      { name: "Home", url: "https://sqlquery.techcodecompany.com" },
+      { name: "FAQ", url: "https://sqlquery.techcodecompany.com/faq" },
     ]);
 
     expect(schema.itemListElement[1].position).toBe(2);
@@ -46,6 +46,5 @@ describe("SEO and config helpers", () => {
     expect(adsClient).toBe("ca-pub-6566192641888645");
     expect(adSlots.hero.slot).toBe("5183612327");
     expect(adSlots.inContent.slot).toBe("9222479973");
-    expect(adSlots.sidebar.slot).toBe("8543823128");
   });
 });

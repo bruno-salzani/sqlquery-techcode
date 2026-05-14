@@ -10,14 +10,16 @@ export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/40 bg-white/70 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-white/50 bg-white/78 backdrop-blur-xl">
       <Container className="py-4">
         <div className="flex items-center justify-between gap-4">
           <Link className="flex items-center gap-3" href="/">
-            <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-slate-950 text-sm font-bold text-white">SQL</span>
+            <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-950 text-sm font-bold text-white shadow-lg shadow-slate-950/15">
+              SQL
+            </span>
             <div>
               <span className="block text-sm font-semibold text-slate-950">{siteConfig.name}</span>
-              <span className="block text-xs text-slate-500">SQL Generator premium</span>
+              <span className="block text-xs text-slate-500">Gerador SQL simples e rápido</span>
             </div>
           </Link>
 
@@ -30,8 +32,8 @@ export function SiteHeader() {
           </nav>
 
           <div className="hidden items-center gap-2 lg:flex">
-            <Button className="hidden sm:inline-flex" href="/exemplos" variant="ghost">
-              Ver exemplos
+            <Button className="hidden sm:inline-flex" href="/faq" variant="ghost">
+              Ver dúvidas
             </Button>
             <Button href="/sql-generator">Gerar consulta</Button>
           </div>
@@ -49,7 +51,7 @@ export function SiteHeader() {
         </div>
 
         {menuOpen ? (
-          <nav aria-label="Menu mobile" className="mt-4 grid gap-2 rounded-3xl border border-white/50 bg-white/90 p-4 lg:hidden" id="mobile-menu">
+          <nav aria-label="Menu mobile" className="mt-4 grid gap-2 rounded-3xl border border-white/60 bg-white/95 p-4 lg:hidden" id="mobile-menu">
             {siteConfig.nav.map((item) => (
               <Link
                 key={item.href}

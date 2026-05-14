@@ -1,11 +1,11 @@
-import { siteConfig } from "@/lib/site";
+import { resolveSiteUrl, siteConfig } from "@/lib/site";
 
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: siteConfig.author,
   url: siteConfig.url,
-  logo: `${siteConfig.url}/images/brand/logo-mark.svg`,
+  logo: resolveSiteUrl("/images/brand/logo-mark.svg"),
 };
 
 export const websiteSchema = {
@@ -81,9 +81,9 @@ export const buildArticleSchema = ({
     name: siteConfig.author,
     logo: {
       "@type": "ImageObject",
-      url: `${siteConfig.url}/images/brand/logo-mark.svg`,
+      url: resolveSiteUrl("/images/brand/logo-mark.svg"),
     },
   },
   mainEntityOfPage: url,
-  image: [`${siteConfig.url}${siteConfig.socialImage}`],
+  image: [siteConfig.socialImage],
 });

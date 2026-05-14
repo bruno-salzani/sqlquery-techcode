@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { AdPlaceholder } from "@/components/ads/ad-placeholder";
+import { Card } from "@/components/ui/card";
 import { adsClient, shouldRenderLiveAds } from "@/lib/ads";
 
 declare global {
@@ -34,7 +35,7 @@ export function AdSlot({ slot, label, className = "" }: AdSlotProps) {
   }, []);
 
   return (
-    <div className={`glass-card overflow-hidden rounded-[2rem] p-3 ${className}`.trim()}>
+    <Card className={`overflow-hidden rounded-[2rem] p-3 ${className}`.trim()}>
       {shouldRenderLiveAds ? (
         <ins
           className="adsbygoogle block h-full w-full overflow-hidden rounded-[1.5rem]"
@@ -46,6 +47,6 @@ export function AdSlot({ slot, label, className = "" }: AdSlotProps) {
       ) : (
         <AdPlaceholder label={label} />
       )}
-    </div>
+    </Card>
   );
 }

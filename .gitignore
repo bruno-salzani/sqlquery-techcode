@@ -6,6 +6,8 @@ coverage/
 playwright-report/
 test-results/
 blob-report/
+.claude/worktrees/*/.next/
+.claude/worktrees/*/node_modules/
 *.log
 *.tsbuildinfo
 #.env

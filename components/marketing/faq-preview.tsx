@@ -9,9 +9,9 @@ export function FaqPreview() {
       <Container>
         <div className="max-w-3xl">
           <Badge>FAQ</Badge>
-          <h2 className="section-title mt-5 text-slate-950">Perguntas frequentes sobre o SQL Query.</h2>
+          <h2 className="section-title mt-5 text-slate-950">Dúvidas comuns antes de usar o gerador.</h2>
           <p className="section-copy mt-5">
-            Estrutura pensada para remover dúvidas antes do primeiro uso e fortalecer a indexação com conteúdo útil e objetivo.
+            Respostas curtas para explicar o escopo da ferramenta, a compatibilidade com bancos e o tipo de uso ideal nesta fase.
           </p>
         </div>
 

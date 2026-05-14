@@ -42,7 +42,6 @@ Variáveis principais:
 - `NEXT_PUBLIC_ADSENSE_CLIENT`
 - `NEXT_PUBLIC_ADSENSE_SLOT_BANNER`
 - `NEXT_PUBLIC_ADSENSE_SLOT_SQUARE`
-- `NEXT_PUBLIC_ADSENSE_SLOT_VERTICAL`
 
 ## Escopo funcional atual
 O projeto gera apenas consultas `SELECT` simples com:
@@ -67,7 +66,7 @@ Não há backend, autenticação, CRUD, upload, banco de dados ou persistência 
 
 ## Publicação
 Base canônica atual:
-- `https://sqlquery.techcode.com.br`
+- `https://sqlquery.techcodecompany.com`
 
 ## Segurança
 Consulte [SECURITY.md](SECURITY.md).

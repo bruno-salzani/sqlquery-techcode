@@ -1,10 +1,16 @@
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://sqlquery.techcode.com.br";
+const normalizeSiteUrl = (value: string) => value.replace(/\/+$/, "");
+
+const siteUrl = normalizeSiteUrl(process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://sqlquery.techcodecompany.com");
+
+export const resolveSiteUrl = (path = "/") => {
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  return new URL(normalizedPath, `${siteUrl}/`).toString();
+};
 
 export const siteConfig = {
   name: "SQL Query",
   shortName: "SQL Query",
-  description:
-    "Crie consultas SQL simples em segundos com um gerador rápido, intuitivo e pronto para copiar.",
+  description: "Gere consultas SQL simples em segundos com uma interface rápida, clara e pronta para copiar.",
   url: siteUrl,
   locale: "pt_BR",
   keywords: [
@@ -16,93 +22,82 @@ export const siteConfig = {
     "gerar query sql",
   ],
   author: "TechCode Company",
-  socialImage: "/images/brand/og-cover.svg",
+  socialImagePath: "/opengraph-image",
+  socialImage: resolveSiteUrl("/opengraph-image"),
   nav: [
     { href: "/sql-generator", label: "Gerador SQL" },
-    { href: "/como-funciona", label: "Como funciona" },
     { href: "/exemplos", label: "Exemplos" },
     { href: "/faq", label: "FAQ" },
   ],
 };
 
-export const heroStats = [
-  "Sem cadastro",
-  "Pronto para copiar",
-  "Mobile-first",
-  "SEO e performance premium",
-];
+export const heroStats = ["Sem cadastro", "Copia e cola imediato", "Compatível com mobile", "Interface limpa e objetiva"];
 
 export const featureCards = [
   {
-    title: "SQL limpo e legível",
-    description: "Monte queries simples com estrutura clara para estudar, testar e acelerar tarefas repetitivas.",
+    title: "Menos atrito para começar",
+    description: "Informe tabela, colunas e filtros sem abrir mão de clareza nem perder tempo com sintaxe manual logo no primeiro passo.",
   },
   {
-    title: "Fluxo intuitivo",
-    description: "Defina tabela, colunas, filtros, ordenação e limite sem ruído visual nem etapas desnecessárias.",
+    title: "Saída pronta para copiar",
+    description: "O resultado aparece formatado, legível e com explicação em linguagem natural para revisar antes de usar.",
   },
   {
-    title: "Copie em segundos",
-    description: "Use exemplos prontos, gere o resultado instantaneamente e copie o SQL com um clique.",
+    title: "Útil para estudo e rotina",
+    description: "Funciona bem para aprender SELECTs básicos, validar ideias rápido e acelerar tarefas internas repetitivas.",
   },
   {
-    title: "Pronto para crescer",
-    description: "A base já nasce otimizada para SEO técnico, conteúdo indexável e monetização futura.",
-  },
-];
-
-export const steps = [
-  {
-    title: "Descreva a consulta",
-    description: "Informe a tabela, escolha as colunas e comece com uma estrutura simples e previsível.",
-  },
-  {
-    title: "Ajuste filtros e ordenação",
-    description: "Adicione condições, direção de ordenação e limite de linhas conforme o objetivo da consulta.",
-  },
-  {
-    title: "Copie e use",
-    description: "Revise o SQL, leia a explicação em linguagem natural e copie o resultado imediatamente.",
+    title: "Base leve e escalável",
+    description: "A aplicação já nasce preparada para SEO técnico, performance alta e monetização discreta sem poluir a experiência.",
   },
 ];
 
 export const useCases = [
-  "SELECT simples para tabelas de clientes, produtos e pedidos",
-  "Filtros básicos com igualdade, comparação e busca parcial",
-  "Ordenação por data, nome, preço ou outros campos comuns",
-  "Limitação de linhas para testes, dashboards e estudos",
+  "Montar SELECTs simples para clientes, produtos, pedidos e tabelas internas.",
+  "Aplicar filtros básicos com igualdade, comparação ou LIKE em poucos cliques.",
+  "Ordenar por data, nome, preço ou qualquer campo comum sem reescrever tudo.",
+  "Definir limite de linhas para testes rápidos, consultas operacionais e estudo.",
+];
+
+export const steps = [
+  {
+    title: "Descreva a base da consulta",
+    description: "Informe a tabela e as colunas que deseja retornar em uma estrutura simples e previsível.",
+  },
+  {
+    title: "Ajuste filtros e ordenação",
+    description: "Adicione condições, direção de ordenação e limite de linhas conforme o objetivo da query.",
+  },
+  {
+    title: "Copie, revise e use",
+    description: "Leia a explicação em linguagem natural, valide o SQL e copie o resultado para o seu ambiente.",
+  },
 ];
 
 export const faqItems = [
   {
     question: "O SQL Query funciona para iniciantes?",
-    answer:
-      "Sim. A interface foi pensada para quem quer gerar consultas SQL simples sem lidar com sintaxe manual logo no início.",
+    answer: "Sim. A interface foi pensada para quem quer gerar consultas SQL simples sem precisar dominar a sintaxe completa logo no início.",
   },
   {
     question: "Posso usar o resultado em MySQL ou PostgreSQL?",
-    answer:
-      "O foco é gerar SQL simples e legível. Para cenários avançados, o ideal é revisar pequenas diferenças específicas do seu banco.",
+    answer: "Sim para consultas simples. Em cenários avançados, vale revisar pequenas diferenças específicas do banco antes de executar.",
   },
   {
     question: "Preciso criar conta para usar o gerador?",
-    answer:
-      "Não. A ferramenta foi desenhada para acesso rápido, uso direto e menor atrito possível.",
+    answer: "Não. O fluxo foi desenhado para uso direto, rápido e sem barreiras antes do primeiro resultado.",
   },
   {
     question: "Esse gerador cria JOINs complexos?",
-    answer:
-      "Nesta primeira versão, o foco é produtividade em consultas simples com filtros, ordenação e limite.",
+    answer: "Não nesta fase. O foco atual é produtividade em SELECTs simples com filtros, ordenação e limite.",
   },
   {
     question: "Posso copiar e editar a query depois?",
-    answer:
-      "Sim. O resultado é entregue em texto puro para você copiar, adaptar e testar no seu ambiente normalmente.",
+    answer: "Sim. O resultado é entregue em texto puro para você copiar, adaptar e testar normalmente no seu ambiente.",
   },
   {
-    question: "O site é otimizado para mobile?",
-    answer:
-      "Sim. Todo o layout foi construído com abordagem mobile-first para funcionar bem em telas pequenas e grandes.",
+    question: "O site funciona bem no celular?",
+    answer: "Sim. Toda a interface foi construída com abordagem mobile-first para manter leitura, navegação e ação principal confortáveis em telas pequenas.",
   },
 ];
 
@@ -149,20 +144,3 @@ export const examples: ExampleItem[] = [
     limit: "10",
   },
 ];
-
-export const blogPosts = [
-  {
-    slug: "como-gerar-consultas-sql-simples-mais-rapido",
-    title: "Como gerar consultas SQL simples mais rápido",
-    description:
-      "Entenda um fluxo prático para montar SELECTs com filtros e ordenação sem perder clareza.",
-    publishedAt: "2026-05-11",
-  },
-  {
-    slug: "erros-comuns-ao-escrever-select-manualmente",
-    title: "Erros comuns ao escrever SELECT manualmente",
-    description:
-      "Veja pontos que atrapalham iniciantes e como reduzir retrabalho ao montar queries básicas.",
-    publishedAt: "2026-05-11",
-  },
-] as const;

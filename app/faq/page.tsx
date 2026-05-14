@@ -6,8 +6,8 @@ import { buildMetadata } from "@/lib/seo";
 import { faqItems } from "@/lib/site";
 
 export const metadata = buildMetadata({
-  title: "FAQ do SQL Query",
-  description: "Respostas diretas sobre o gerador SQL, compatibilidade, usabilidade e principais dúvidas de iniciantes.",
+  title: "FAQ do gerador SQL",
+  description: "Respostas diretas sobre o gerador SQL, compatibilidade, usabilidade e principais dúvidas de quem quer montar consultas simples.",
   path: "/faq",
 });
 
@@ -19,9 +19,9 @@ export default function FaqPage() {
         <Container>
           <div className="max-w-3xl">
             <Badge>Perguntas frequentes</Badge>
-            <h1 className="section-title mt-5 text-slate-950">Tudo o que você precisa saber antes de usar o SQL Query.</h1>
+            <h1 className="section-title mt-5 text-slate-950">Respostas objetivas sobre o uso do SQL Query.</h1>
             <p className="section-copy mt-5">
-              Esta página reúne dúvidas comuns sobre geração de consultas SQL simples, experiência de uso, diferenças entre bancos e limitações desta primeira versão.
+              Aqui estão as dúvidas mais comuns sobre o escopo do gerador, compatibilidade com bancos, experiência de uso e limites desta versão.
             </p>
           </div>
           <div className="mt-10">

@@ -2,10 +2,10 @@ import Link from "next/link";
 import { Container } from "@/components/layout/container";
 
 const footerLinks = [
+  { href: "/sql-generator", label: "Gerador SQL" },
   { href: "/privacy-policy", label: "Privacidade" },
   { href: "/terms", label: "Termos" },
   { href: "/contact", label: "Contato" },
-  { href: "/blog", label: "Blog" },
 ];
 
 export function SiteFooter() {
@@ -15,7 +15,7 @@ export function SiteFooter() {
         <div className="max-w-xl">
           <p className="text-lg font-semibold text-slate-950">SQL Query</p>
           <p className="mt-2 text-sm leading-7 text-slate-600">
-            Gerador de consultas SQL simples com foco em clareza, velocidade, SEO técnico e experiência premium.
+            Gerador de consultas SQL simples com foco em clareza, velocidade, experiência limpa e boa performance.
           </p>
         </div>
 

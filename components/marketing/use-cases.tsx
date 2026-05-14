@@ -1,8 +1,6 @@
-import { AdSlot } from "@/components/ads/ad-slot";
 import { Container } from "@/components/layout/container";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { adSlots } from "@/lib/ads";
 import { useCases } from "@/lib/site";
 
 export function UseCases() {
@@ -12,13 +10,11 @@ export function UseCases() {
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
             <Badge>Casos de uso</Badge>
-            <h2 className="section-title mt-5 text-slate-950">Feito para consultas frequentes, rápidas e fáceis de revisar.</h2>
+            <h2 className="section-title mt-5 text-slate-950">Bom para tarefas rápidas, estudo e consultas operacionais do dia a dia.</h2>
             <p className="section-copy mt-5">
-              Ideal para aprendizado, tarefas internas, testes de banco e fluxos repetitivos em que o ganho vem da velocidade com clareza.
+              Quando a necessidade é estruturar um SELECT simples sem perder tempo com sintaxe manual, a ferramenta ajuda a organizar o básico
+              e deixar o resultado pronto para revisão.
             </p>
-            <div className="mt-8 hidden lg:block">
-              <AdSlot className={adSlots.sidebar.className} label={adSlots.sidebar.label} slot={adSlots.sidebar.slot} />
-            </div>
           </div>
 
           <div className="grid gap-4">

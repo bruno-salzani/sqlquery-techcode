@@ -1,14 +1,14 @@
-import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import { expect, test } from "@playwright/test";
 
 test.describe("Smoke tests", () => {
   test("home page loads and navigates to the generator", async ({ page }) => {
     await page.goto("/");
-    await expect(page.getByRole("heading", { level: 1 })).toContainText("Crie consultas SQL simples");
+    await expect(page.getByRole("heading", { level: 1 })).toContainText("Gere consultas SQL simples");
     await expect(page.getByRole("link", { name: "Abrir gerador SQL" })).toBeVisible();
     await page.getByRole("link", { name: "Abrir gerador SQL" }).click();
     await expect(page).toHaveURL(/sql-generator/);
-    await expect(page.getByRole("heading", { level: 1 })).toContainText("Gerador SQL online");
+    await expect(page.getByRole("heading", { level: 1 })).toContainText("Monte consultas SQL simples");
   });
 
   test("critical generator flow works", async ({ page }) => {
@@ -22,7 +22,7 @@ test.describe("Smoke tests", () => {
     await page.getByRole("button", { name: "Gerar SQL" }).click();
 
     await expect(page.getByText("SELECT id, nome, email")).toBeVisible();
-    await expect(page.getByText("WHERE status = 'ativo'")).toBeVisible();
+    await expect(page.getByText("WHERE status = 'ativo'")) .toBeVisible();
     await expect(page.getByRole("button", { name: "Copiar SQL" })).toBeVisible();
   });
 
@@ -38,10 +38,10 @@ test.describe("Smoke tests", () => {
 
   test("main public pages respond and mobile menu works", async ({ page, isMobile }) => {
     await page.goto("/faq");
-    await expect(page.getByRole("heading", { level: 1 })).toContainText("Tudo o que você precisa saber");
+    await expect(page.getByRole("heading", { level: 1 })).toContainText("Respostas objetivas");
 
-    await page.goto("/blog");
-    await expect(page.getByRole("heading", { level: 1 })).toContainText("Conteúdo para crescer tráfego");
+    await page.goto("/exemplos");
+    await expect(page.getByRole("heading", { level: 1 })).toContainText("Consultas prontas");
 
     if (isMobile) {
       await page.goto("/");

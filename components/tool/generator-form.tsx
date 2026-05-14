@@ -4,10 +4,11 @@ import { useMemo, useRef, useState } from "react";
 import { ExamplePrompts } from "@/components/tool/example-prompts";
 import { SqlOutput } from "@/components/tool/sql-output";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
-import { generatorSchema, type FilterInput, type GeneratorInput } from "@/lib/sql/validators";
 import { buildSqlQuery, explainSqlQuery } from "@/lib/sql/prompt-builder";
+import { generatorSchema, type FilterInput, type GeneratorInput } from "@/lib/sql/validators";
 
 type LocalFilter = FilterInput & { id: string };
 type LocalForm = Omit<GeneratorInput, "filters"> & { filters: LocalFilter[] };
@@ -139,14 +140,18 @@ export function GeneratorForm() {
 
   return (
     <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
-      <div className="glass-card rounded-[2rem] p-5 sm:p-6">
+      <Card className="rounded-[2rem] p-5 sm:p-6">
         <div className="grid gap-5">
+          <div className="rounded-[1.5rem] border border-blue-100 bg-blue-50/80 px-4 py-3 text-sm text-slate-700">
+            Preencha apenas o essencial para gerar uma base legível. Você pode copiar e adaptar a query depois no seu ambiente.
+          </div>
+
           <div>
             <label className="mb-2 block text-sm font-semibold text-slate-900" htmlFor="table">
               Tabela
             </label>
             <Input
-              aria-describedby={errors.table ? "table-error" : undefined}
+              aria-describedby={errors.table ? "table-error" : "table-help"}
               aria-invalid={Boolean(errors.table)}
               hasError={Boolean(errors.table)}
               id="table"
@@ -154,6 +159,9 @@ export function GeneratorForm() {
               placeholder="clientes"
               value={form.table}
             />
+            <p className="mt-2 text-xs text-slate-500" id="table-help">
+              Use o nome simples da tabela, sem aliases ou comandos extras.
+            </p>
             {errors.table ? <p className="mt-2 text-sm text-rose-600" id="table-error">{errors.table}</p> : null}
           </div>
 
@@ -171,7 +179,7 @@ export function GeneratorForm() {
               value={form.columns}
             />
             <p className="mt-2 text-xs text-slate-500" id="columns-help">
-              Use colunas simples separadas por vírgula ou *.
+              Use colunas simples separadas por vírgula ou * para retornar tudo.
             </p>
             {errors.columns ? <p className="mt-2 text-sm text-rose-600" id="columns-error">{errors.columns}</p> : null}
           </div>
@@ -274,7 +282,7 @@ export function GeneratorForm() {
                 Order by
               </label>
               <Input
-                aria-describedby={errors.orderBy ? "orderBy-error" : undefined}
+                aria-describedby={errors.orderBy ? "orderBy-error" : "orderBy-help"}
                 aria-invalid={Boolean(errors.orderBy)}
                 hasError={Boolean(errors.orderBy)}
                 id="orderBy"
@@ -282,6 +290,9 @@ export function GeneratorForm() {
                 placeholder="nome"
                 value={form.orderBy}
               />
+              <p className="mt-2 text-xs text-slate-500" id="orderBy-help">
+                Opcional. Use apenas um identificador simples para ordenar o resultado.
+              </p>
               {errors.orderBy ? <p className="mt-2 text-sm text-rose-600" id="orderBy-error">{errors.orderBy}</p> : null}
             </div>
             <div>
@@ -290,9 +301,7 @@ export function GeneratorForm() {
               </label>
               <Select
                 id="direction"
-                onChange={(event) =>
-                  setForm((current) => ({ ...current, direction: event.target.value as GeneratorInput["direction"] }))
-                }
+                onChange={(event) => setForm((current) => ({ ...current, direction: event.target.value as GeneratorInput["direction"] }))}
                 value={form.direction}
               >
                 <option value="ASC">ASC</option>
@@ -314,7 +323,7 @@ export function GeneratorForm() {
                 value={form.limit}
               />
               <p className="mt-2 text-xs text-slate-500" id="limit-help">
-                Use um valor entre 1 e 99999.
+                Opcional. Use um valor entre 1 e 99999.
               </p>
               {errors.limit ? <p className="mt-2 text-sm text-rose-600" id="limit-error">{errors.limit}</p> : null}
             </div>
@@ -329,19 +338,20 @@ export function GeneratorForm() {
             </Button>
           </div>
         </div>
-      </div>
+      </Card>
 
       <div className="space-y-6">
         {query ? (
           <SqlOutput explanation={explanation} onReset={resetForm} query={query} />
         ) : (
-          <div className="glass-card rounded-[2rem] p-6">
+          <Card className="min-h-[220px] rounded-[2rem] p-6">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Resultado</p>
-            <h3 className="mt-3 text-2xl font-semibold tracking-[-0.03em] text-slate-950">Seu SQL aparece aqui.</h3>
+            <h2 className="mt-3 text-2xl font-semibold tracking-[-0.03em] text-slate-950">Seu SQL aparece aqui.</h2>
             <p className="mt-3 text-sm leading-7 text-slate-600">
-              Preencha os campos principais, gere a consulta e copie o resultado com um clique.
+              Preencha os campos principais, gere a consulta e copie o resultado com um clique. A explicação em linguagem natural aparece junto
+              para facilitar a revisão.
             </p>
-          </div>
+          </Card>
         )}
 
         <div>
@@ -350,7 +360,10 @@ export function GeneratorForm() {
             onSelect={(value) =>
               setForm({
                 ...value,
-                filters: value.filters.length > 0 ? value.filters.map((filter) => ({ ...filter, id: createFilterId() })) : [createFilter(createFilterId())],
+                filters:
+                  value.filters.length > 0
+                    ? value.filters.map((filter) => ({ ...filter, id: createFilterId() }))
+                    : [createFilter(createFilterId())],
               })
             }
           />
