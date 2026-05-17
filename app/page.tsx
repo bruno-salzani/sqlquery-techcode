@@ -3,6 +3,7 @@ import { FinalCta } from "@/components/marketing/final-cta";
 import { FaqPreview } from "@/components/marketing/faq-preview";
 import { Hero } from "@/components/marketing/hero";
 import { HowItWorks } from "@/components/marketing/how-it-works";
+import { PageWrapper } from "@/components/layout/page-wrapper";
 import { FaqSchema } from "@/components/seo/faq-schema";
 import { SoftwareSchema } from "@/components/seo/software-schema";
 import { buildMetadata } from "@/lib/seo";
@@ -15,6 +16,11 @@ export const metadata = buildMetadata({
   path: "/",
 });
 
+const sidebarAds = [
+  { slot: "1234567890", label: "Top Sidebar Ad" },
+  { slot: "0987654321", label: "Bottom Sidebar Ad" },
+];
+
 export default function HomePage() {
   return (
     <>
@@ -24,11 +30,14 @@ export default function HomePage() {
         url={siteConfig.url}
       />
       <FaqSchema items={faqItems.slice(0, 5)} />
-      <Hero />
-      <Benefits />
-      <HowItWorks />
-      <FaqPreview />
-      <FinalCta />
+
+      <PageWrapper sidebarAds={sidebarAds}>
+        <Hero />
+        <Benefits />
+        <HowItWorks />
+        <FaqPreview />
+        <FinalCta />
+      </PageWrapper>
     </>
   );
 }

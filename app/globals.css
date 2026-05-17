@@ -71,6 +71,7 @@ textarea {
   background: rgba(37, 99, 235, 0.18);
 }
 
+/* Section Styles */
 .section-title {
   font-size: clamp(2rem, 2vw + 1rem, 3.25rem);
   line-height: 1.02;
@@ -95,6 +96,56 @@ textarea {
   gap: 1rem;
 }
 
+/* Section Spacing */
+section {
+  @apply py-12 sm:py-16 lg:py-20;
+}
+
+section:not(:last-of-type) {
+  @apply border-b border-white/40;
+}
+
+/* Content Section */
+.content-section {
+  @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+}
+
+/* Main Content with Sidebar */
+.main-with-sidebar {
+  @apply mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:grid lg:grid-cols-12 lg:gap-6 lg:px-8 lg:py-12;
+}
+
+/* Ads Section Wrapper */
+.ads-section {
+  @apply space-y-6 rounded-3xl bg-white/50 p-6 backdrop-blur-sm;
+}
+
+/* Article Content */
+article {
+  @apply prose max-w-none;
+}
+
+article h2 {
+  @apply mt-8 text-2xl font-bold text-slate-950;
+}
+
+article h3 {
+  @apply mt-6 text-xl font-semibold text-slate-900;
+}
+
+article p {
+  @apply leading-7 text-slate-600;
+}
+
+article a {
+  @apply font-semibold text-blue-600 hover:text-blue-700;
+}
+
+article code {
+  @apply rounded bg-slate-100 px-2 py-1 font-mono text-sm text-slate-900;
+}
+
+/* Smooth Transitions */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

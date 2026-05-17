@@ -10,11 +10,11 @@ export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/50 bg-white/78 backdrop-blur-xl">
-      <Container className="py-4">
+    <header className="sticky top-0 z-50 border-b border-white/50 bg-gradient-to-b from-white/90 to-white/70 backdrop-blur-xl">
+      <Container className="py-4" maxWidth="2xl">
         <div className="flex items-center justify-between gap-4">
-          <Link className="flex items-center gap-3" href="/">
-            <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-950 text-sm font-bold text-white shadow-lg shadow-slate-950/15">
+          <Link className="flex items-center gap-3 transition hover:opacity-80" href="/">
+            <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-blue-700 text-sm font-bold text-white shadow-lg shadow-blue-600/20">
               SQL
             </span>
             <div>
@@ -23,9 +23,13 @@ export function SiteHeader() {
             </div>
           </Link>
 
-          <nav aria-label="Navegação principal" className="hidden items-center gap-6 text-sm text-slate-600 lg:flex">
+          <nav aria-label="Navegação principal" className="hidden items-center gap-8 text-sm font-medium text-slate-600 lg:flex">
             {siteConfig.nav.map((item) => (
-              <Link key={item.href} className="transition hover:text-slate-950" href={item.href}>
+              <Link 
+                key={item.href} 
+                className="transition hover:text-slate-950 hover:underline underline-offset-4" 
+                href={item.href}
+              >
                 {item.label}
               </Link>
             ))}
@@ -33,16 +37,16 @@ export function SiteHeader() {
 
           <div className="hidden items-center gap-2 lg:flex">
             <Button className="hidden sm:inline-flex" href="/faq" variant="ghost">
-              Ver dúvidas
+              FAQ
             </Button>
-            <Button href="/sql-generator">Gerar consulta</Button>
+            <Button href="/sql-generator">Gerar SQL</Button>
           </div>
 
           <button
             aria-controls="mobile-menu"
             aria-expanded={menuOpen}
             aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-900 shadow-sm lg:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-900 shadow-sm transition hover:shadow-md lg:hidden"
             onClick={() => setMenuOpen((current) => !current)}
             type="button"
           >

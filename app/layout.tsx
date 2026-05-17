@@ -59,7 +59,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html className={inter.variable} lang="pt-BR">
-      <body className={`${inter.className} text-slate-950 antialiased`}>
+      <body className={`${inter.className} flex min-h-screen flex-col text-slate-950 antialiased`}>
         <SchemaScript data={organizationSchema} />
         <SchemaScript data={websiteSchema} />
         {adsEnabled ? (
@@ -78,7 +78,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           Pular para o conteúdo
         </a>
         <SiteHeader />
-        <main id="main-content">{children}</main>
+        <main id="main-content" className="flex-1">
+          {children}
+        </main>
         <SiteFooter />
       </body>
     </html>
